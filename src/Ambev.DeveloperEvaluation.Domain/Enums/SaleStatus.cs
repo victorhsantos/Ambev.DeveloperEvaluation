@@ -2,7 +2,7 @@
 {
     public enum SaleStatus
     {
-        Cancelled = 1,
-        NotCancelled = 2        
+        NotCancelled = 0,
+        Cancelled = 1
     }
 }

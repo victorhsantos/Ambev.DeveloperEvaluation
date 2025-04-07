@@ -15,5 +15,16 @@
     </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Application\Sales\AddSaleHandlerTests.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Application\Sales\AlterSaleHandlerTests.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Application\Sales\DeleteSaleHandlerTests.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Application\Sales\GetSalesHandlerTests.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Application\Sales\TestData\AlterSaleHandlerTestData.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Application\Sales\TestData\DeleteSaleHandlerTestData.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Application\Sales\TestData\GetSalesHandlerTestData.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Domain\Entities\SaleItemTests.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Domain\Entities\SaleTests.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Domain\Entities\TestData\SaleItemTestData.cs" />
+    <None Include="tests\Ambev.DeveloperEvaluation.Unit\Domain\Entities\TestData\SaleTestData.cs" />
   </ItemGroup>
 </Project>

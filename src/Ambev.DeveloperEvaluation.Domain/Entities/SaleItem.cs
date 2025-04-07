@@ -6,7 +6,7 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
 {
     public class SaleItem : BaseEntity
     {
-        SaleItem() { }
+        public SaleItem() { }
 
         public SaleItem(Guid saleNumber, Guid productId, int quantity, decimal unitPrice)
         {
@@ -15,9 +15,8 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
             ProductId = productId;
             Quantity = quantity;
             UnitPrice = unitPrice;
-            TotalAmount = (UnitPrice * Quantity) - Discount;
-
             ApplyDiscount();
+            TotalAmount = (UnitPrice * Quantity) - Discount;
 
             new SaleItemValidator().ValidateAndThrow(this);
         }

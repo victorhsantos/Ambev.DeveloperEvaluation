@@ -34,12 +34,14 @@ namespace Ambev.DeveloperEvaluation.Domain.Entities
         public void SetAsCancelled() => Status = SaleStatus.Cancelled;
         public void SetAsNotCancelled() => Status = SaleStatus.NotCancelled;
 
-        public void Update(Sale sale)
+        public Sale Update(Sale sale)
         {
             Customer = sale.Customer;
             PaymentAddress = sale.PaymentAddress;
             Items = sale.Items;
             TotalAmount = sale.Items.Sum(i => i.TotalAmount);
+
+            return this;
         }
     }
 }
