@@ -14,6 +14,7 @@ namespace Ambev.DeveloperEvaluation.WebApi.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Produces("application/json")]
     public class SalesController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -22,8 +23,8 @@ namespace Ambev.DeveloperEvaluation.WebApi.Controllers
         /// <summary>
         /// Initializes a new instance of SalesController
         /// </summary>
-        /// <param name="mediator"></param>
-        /// <param name="logger"></param>
+        /// <param name="mediator">Mediator instance</param>
+        /// <param name="logger">Logger instance</param>
         public SalesController(IMediator mediator, ILogger logger)
         {
             _mediator = mediator;
@@ -33,9 +34,12 @@ namespace Ambev.DeveloperEvaluation.WebApi.Controllers
         /// <summary>
         /// Creates a new sale
         /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
+        /// <param name="command">Details of the sale to be created</param>
+        /// <returns>Response with the ID of the created sale</returns>
+        /// <response code="201">Sale created successfully</response>
+        /// <response code="400">Invalid input data</response>
         [HttpPost]
+        [Consumes("application/json")]
         [ProducesResponseType(typeof(ApiResponseWithData<Guid>), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Post([FromBody] AddSaleCommand command)
@@ -64,9 +68,12 @@ namespace Ambev.DeveloperEvaluation.WebApi.Controllers
         /// <summary>
         /// Updates an existing sale
         /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
+        /// <param name="command">Details of the sale to be updated</param>
+        /// <returns>Response indicating the result of the update operation</returns>
+        /// <response code="200">Sale updated successfully</response>
+        /// <response code="404">Sale not found</response>
         [HttpPut]
+        [Consumes("application/json")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Put([FromBody] AlterSaleCommand command)
@@ -91,8 +98,9 @@ namespace Ambev.DeveloperEvaluation.WebApi.Controllers
         /// <summary>
         /// Retrieves sales based on the provided filters
         /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
+        /// <param name="query">Filters for retrieving sales</param>
+        /// <returns>List of sales matching the filters</returns>
+        /// <response code="200">Sales retrieved successfully</response>
         [HttpGet]
         [ProducesResponseType(typeof(GetSalesResponse), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get([FromQuery] GetSalesQuery query)
@@ -105,9 +113,12 @@ namespace Ambev.DeveloperEvaluation.WebApi.Controllers
         /// <summary>
         /// Deletes a sale based on the provided sale number
         /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
+        /// <param name="command">Details of the sale to be deleted</param>
+        /// <returns>Response indicating the result of the delete operation</returns>
+        /// <response code="200">Sale deleted successfully</response>
+        /// <response code="404">Sale not found</response>
         [HttpDelete]
+        [Consumes("application/json")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> Delete([FromBody] DeleteSaleCommand command)
@@ -122,6 +133,5 @@ namespace Ambev.DeveloperEvaluation.WebApi.Controllers
 
             return Ok(new ApiResponse { Success = result, Message = "Sale canceled successfully" });
         }
-
     }
 }
